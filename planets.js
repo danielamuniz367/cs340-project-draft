@@ -4,7 +4,7 @@ module.exports = function(){
 
     function servePlanets(req, res){
         console.log("You asked me for some planets?")
-        var query = 'SELECT planet_id, name, population FROM houses';
+        var query = 'SELECT id, name, population FROM houses';
         var mysql = req.app.get('mysql');
         var context = {};
 
@@ -28,7 +28,7 @@ module.exports = function(){
       console.log(chicken.params);
       fancyId = chicken.params.fancyId
 
-      var queryString = "SELECT planet_id, name, population, language, capital FROM bsg_planets WHERE planet_id = ?"
+      var queryString = "SELECT id, name, population, language, capital FROM bsg_planets WHERE planet_id = ?"
 
       var mysql = steak.app.get('mysql')
       var context = {};
