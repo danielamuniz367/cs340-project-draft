@@ -68,6 +68,35 @@ INSERT INTO `bsg_cert_people` VALUES (1,1,'0000-00-00'),(1,2,'0000-00-00'),(2,1,
 UNLOCK TABLES;
 
 --
+-- Table structure for table `students`
+--
+
+DROP TABLE IF EXISTS `students`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `students` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `fname` varchar(255) NOT NULL,
+  `lname` varchar(255) DEFAULT NULL,
+  `type` varchar(6) NOT NULL,
+  `class_year` int(1) DEFAULT NULL,
+  `house_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `house_id` (`house_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `students`
+--
+
+LOCK TABLES `students` WRITE;
+/*!40000 ALTER TABLE `students` DISABLE KEYS */;
+INSERT INTO `students` VALUES (1,'Harry','Potter','Wizard',6,1),(2,'Hermione','Granger','Witch',6,1),(3,'Ginevra','Weasley','Witch',5,1);
+/*!40000 ALTER TABLE `students` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `bsg_people`
 --
 
