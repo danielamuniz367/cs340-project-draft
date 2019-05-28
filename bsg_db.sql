@@ -83,7 +83,7 @@ CREATE TABLE `bsg_people` (
   `race` varchar(5) NOT NULL DEFAULT 'Human',
   PRIMARY KEY (`character_id`),
   KEY `homeworld` (`homeworld`),
-  CONSTRAINT `bsg_people_ibfk_1` FOREIGN KEY (`homeworld`) REFERENCES `houses` (`id`) --ON DELETE SET NULL ON UPDATE CASCADE
+  CONSTRAINT `bsg_people_ibfk_1` FOREIGN KEY (`homeworld`) REFERENCES `houses` (`id`) ON DELETE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
