@@ -14,7 +14,7 @@ module.exports = function(){
     }
 
     function getPeople(res, mysql, context, complete){
-        mysql.pool.query("SELECT bsg_people.character_id as id, fname, lname, bsg_planets.name AS homeworld, age FROM bsg_people INNER JOIN bsg_planets ON homeworld = bsg_planets.planet_id", function(error, results, fields){
+        mysql.pool.query("SELECT bsg_people.character_id as id, fname, lname, houses.name AS homeworld, age FROM bsg_people INNER JOIN houses ON homeworld = houses.id", function(error, results, fields){
             if(error){
                 res.write(JSON.stringify(error));
                 res.end();
@@ -25,7 +25,7 @@ module.exports = function(){
     }
 
     function getPeoplebyHomeworld(req, res, mysql, context, complete){
-      var query = "SELECT bsg_people.character_id as id, fname, lname, bsg_planets.name AS homeworld, age FROM bsg_people INNER JOIN bsg_planets ON homeworld = bsg_planets.planet_id WHERE bsg_people.homeworld = ?";
+      var query = "SELECT bsg_people.character_id as id, fname, lname, houses.name AS homeworld, age FROM bsg_people INNER JOIN houses ON homeworld = houses.id WHERE bsg_people.homeworld = ?";
       console.log(req.params)
       var inserts = [req.params.homeworld]
       mysql.pool.query(query, inserts, function(error, results, fields){
@@ -41,7 +41,7 @@ module.exports = function(){
     /* Find people whose fname starts with a given string in the req */
     function getPeopleWithNameLike(req, res, mysql, context, complete) {
       //sanitize the input as well as include the % character
-       var query = "SELECT bsg_people.character_id as id, fname, lname, bsg_planets.name AS homeworld, age FROM bsg_people INNER JOIN bsg_planets ON homeworld = bsg_planets.planet_id WHERE bsg_people.fname LIKE " + mysql.pool.escape(req.params.s + '%');
+       var query = "SELECT bsg_people.character_id as id, fname, lname, houses.name AS homeworld, age FROM bsg_people INNER JOIN houses ON homeworld = houses.id WHERE bsg_people.fname LIKE " + mysql.pool.escape(req.params.s + '%');
       console.log(query)
 
       mysql.pool.query(query, function(error, results, fields){
