@@ -28,7 +28,7 @@ module.exports = function(){
       console.log(chicken.params);
       fancyId = chicken.params.fancyId
 
-      var queryString = "SELECT id, name, population, language, capital FROM bsg_planets WHERE planet_id = ?"
+      var queryString = "SELECT id, name FROM house WHERE id = ?"
 
       var mysql = steak.app.get('mysql')
       var context = {};
