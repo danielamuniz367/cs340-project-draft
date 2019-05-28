@@ -97,33 +97,60 @@ INSERT INTO `bsg_people` VALUES (1,'Will','Adama',20,634,'Human'),(2,'Lee','Adam
 /*!40000 ALTER TABLE `bsg_people` ENABLE KEYS */;
 UNLOCK TABLES;
 
+
 --
--- Table structure for table `bsg_planets`
+-- Table structure for table `houses`
 --
 
-DROP TABLE IF EXISTS `bsg_planets`;
+DROP TABLE IF EXISTS `houses`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `bsg_planets` (
-  `planet_id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) NOT NULL,
-  `population` bigint(20) DEFAULT NULL,
-  `language` varchar(255) DEFAULT NULL,
-  `capital` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`planet_id`),
+CREATE TABLE `houses` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(10) NOT NULL,
+  PRIMARY KEY (`id`),
   UNIQUE KEY `name` (`name`)
 ) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `bsg_planets`
+-- Dumping data for table `houses`
 --
 
-LOCK TABLES `bsg_planets` WRITE;
-/*!40000 ALTER TABLE `bsg_planets` DISABLE KEYS */;
-INSERT INTO `bsg_planets` VALUES (1,'Gemenon',2800000000,'Old Gemenese','Oranu'),(2,'Leonis',2600000000,'Leonese','Luminere'),(3,'Caprica',4900000000,'Caprican','Caprica City'),(7,'Sagittaron',1700000000,NULL,'Tawa'),(16,'Aquaria',25000,NULL,NULL),(17,'Canceron',6700000000,NULL,'Hades'),(18,'Libran',2100000,NULL,NULL),(19,'Picon',1400000000,NULL,'Queestown'),(20,'Scorpia',450000000,NULL,'Celeste'),(21,'Tauron',2500000000,'Tauron','Hypatia'),(22,'Virgon',4300000000,NULL,'Boskirk');
-/*!40000 ALTER TABLE `bsg_planets` ENABLE KEYS */;
+LOCK TABLES `houses` WRITE;
+/*!40000 ALTER TABLE `houses` DISABLE KEYS */;
+INSERT INTO `houses` VALUES (1,'Gryffindor'),(2,'Hufflepuff'),(3,'Slytherin'),(4,'Ravenclaw'),(5,'Unsorted');
+/*!40000 ALTER TABLE `houses` ENABLE KEYS */;
 UNLOCK TABLES;
+
+
+--
+-- Table structure for table `bsg_planets`
+--
+
+-- DROP TABLE IF EXISTS `bsg_planets`;
+-- /*!40101 SET @saved_cs_client     = @@character_set_client */;
+-- /*!40101 SET character_set_client = utf8 */;
+-- CREATE TABLE `bsg_planets` (
+--   `planet_id` int(11) NOT NULL AUTO_INCREMENT,
+--   `name` varchar(255) NOT NULL,
+--   `population` bigint(20) DEFAULT NULL,
+--   `language` varchar(255) DEFAULT NULL,
+--   `capital` varchar(255) DEFAULT NULL,
+--   PRIMARY KEY (`planet_id`),
+--   UNIQUE KEY `name` (`name`)
+-- ) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=latin1;
+-- /*!40101 SET character_set_client = @saved_cs_client */;
+
+-- --
+-- -- Dumping data for table `bsg_planets`
+-- --
+
+-- LOCK TABLES `bsg_planets` WRITE;
+-- /*!40000 ALTER TABLE `bsg_planets` DISABLE KEYS */;
+-- INSERT INTO `bsg_planets` VALUES (1,'Gemenon',2800000000,'Old Gemenese','Oranu'),(2,'Leonis',2600000000,'Leonese','Luminere'),(3,'Caprica',4900000000,'Caprican','Caprica City'),(7,'Sagittaron',1700000000,NULL,'Tawa'),(16,'Aquaria',25000,NULL,NULL),(17,'Canceron',6700000000,NULL,'Hades'),(18,'Libran',2100000,NULL,NULL),(19,'Picon',1400000000,NULL,'Queestown'),(20,'Scorpia',450000000,NULL,'Celeste'),(21,'Tauron',2500000000,'Tauron','Hypatia'),(22,'Virgon',4300000000,NULL,'Boskirk');
+-- /*!40000 ALTER TABLE `bsg_planets` ENABLE KEYS */;
+-- UNLOCK TABLES;
 
 --
 -- Table structure for table `bsg_spaceship`
