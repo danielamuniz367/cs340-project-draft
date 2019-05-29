@@ -14,7 +14,7 @@ module.exports = function(){
     }
 
     function getPeople(res, mysql, context, complete){
-        mysql.pool.query("SELECT id, fname, lname, houses.name AS house_id, class_year FROM students INNER JOIN houses ON house_id = houses.id", function(error, results, fields){
+        mysql.pool.query("SELECT id, fname, lname, house_id, class_year FROM students INNER JOIN houses ON house_id = houses.id", function(error, results, fields){
             if(error){
                 res.write(JSON.stringify(error));
                 res.end();
