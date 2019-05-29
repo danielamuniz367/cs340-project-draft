@@ -143,6 +143,7 @@ module.exports = function(){
         console.log(req.body)
         var mysql = req.app.get('mysql');
         var sql = "INSERT INTO students (fname, lname, house, class_year) VALUES (?,?,?,?)";
+        console.log(sql);
         var inserts = [req.body.fname, req.body.lname, req.body.house, req.body.class_year];
         sql = mysql.pool.query(sql,inserts,function(error, results, fields){
             if(error){
