@@ -3,7 +3,7 @@
 {{#each foo}}
 {{this}}
 {{/each}}
-<h3>Add new people (student):</h3>
+<h3>Add new student:</h3>
 <form id="addperson" action="/people" method="post">
     First name: <input type="text" name="fname"><br>
     Last name: <input type="text" name="lname"><br>
@@ -13,7 +13,8 @@
         <option value="{{id}}">{{name}}</option>
         {{/each}}
     </select><br>
-    Age: <input type="number" name="age"><br>
+    Class Year: <input type="number" name="class_year"><br>
+    {{!-- Age: <input type="number" name="age"><br> --}}
     <input type="submit" value="Submit">
  </form>
 <br/>
@@ -42,7 +43,7 @@
         <th>First Name</th> 
         <th>Last Name</th> 
         <th>House</th>
-        <th>Age</th>  
+        <th>Class Year</th>  
     </thead> 
     <tbody>
         {{#each people}} 
@@ -50,7 +51,7 @@
             <td>{{fname}}</td> 
             <td>{{lname}}</td> 
             <td>{{house_id}}</td> 
-            <td>{{age}}</td>
+            <td>{{class_year}}</td>
             <td><button onclick="deletePerson({{id}})">Delete</button></td>
             <td><a href="/people/{{id}}">Update</a></td>
         </tr> 
