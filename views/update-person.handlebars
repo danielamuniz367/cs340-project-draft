@@ -3,12 +3,12 @@
 <form id="update-person" action="/people" method="post">
     First name: <input type="text" name="fname" value="{{person.fname}}"><br>
     Last name: <input type="text" name="lname" value="{{person.lname}}"><br>
-    Homeworld: <select name="homeworld" id="planet-selector"> 
+    House: <select name="homeworld" id="planet-selector"> 
         {{#each houses}}
         <option value="{{id}}">{{name}}</option>
         {{/each}}
     </select><br>
-    Class Year: <input type="number" name="class_year" value="{{person.class_year}}"><br>
+    Age: <input type="number" name="age" value="{{person.age}}"><br>
 </form>
 <button onclick="updatePerson({{person.id}})">Update</button>
 <script defer>selectPlanet({{person.homeworld}});</script>
