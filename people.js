@@ -14,7 +14,7 @@ module.exports = function(){
     }
 
     function getPeople(res, mysql, context, complete){
-        mysql.pool.query("SELECT id as id, fname, lname, type, class_year, house_id FROM students", function(error, results, fields){
+        mysql.pool.query("SELECT id, fname, lname, type, class_year, house_id FROM students", function(error, results, fields){
             if(error){
                 res.write(JSON.stringify(error));
                 res.end();
