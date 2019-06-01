@@ -14,7 +14,7 @@ module.exports = function(){
     }
 
     function getPeople(res, mysql, context, complete){
-        mysql.pool.query("SELECT id, fname, lname, type, class_year, houses.name AS house_id FROM students INNER JOIN houses ON house_id = houses.id", function(error, results, fields){
+        mysql.pool.query("SELECT students.id as id, fname, lname, type, class_year, houses.id AS house_id FROM students", function(error, results, fields){
             if(error){
                 res.write(JSON.stringify(error));
                 res.end();
@@ -25,7 +25,7 @@ module.exports = function(){
     }
 
     function getPeoplebyHomeworld(req, res, mysql, context, complete){
-      var query = "SELECT id, fname, lname, houses.name AS house, class_year FROM students INNER JOIN houses ON house = houses.id WHERE students.house = ?";
+      var query = "SELECT students.id as id, fname, lname, type, houses.id AS house_id, class_year FROM students INNER JOIN houses ON house = houses.id WHERE students.house = ?";
       console.log(req.params)
       var inserts = [req.params.house]
       mysql.pool.query(query, inserts, function(error, results, fields){
