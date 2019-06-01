@@ -25,7 +25,7 @@ module.exports = function(){
     }
 
     function getPeoplebyHomeworld(req, res, mysql, context, complete){
-      var query = "SELECT bsg_people.character_id as id, fname, lname, houses.name AS homeworld, class_year FROM bsg_people INNER JOIN houses ON homeworld = houses.id WHERE bsg_people.homeworld = ?";
+      var query = "SELECT id, fname, lname, houses.name AS homeworld, class_year FROM students INNER JOIN houses ON homeworld = houses.id WHERE students.homeworld = ?";
       console.log(req.params)
       var inserts = [req.params.homeworld]
       mysql.pool.query(query, inserts, function(error, results, fields){
@@ -41,7 +41,7 @@ module.exports = function(){
     /* Find people whose fname starts with a given string in the req */
     function getPeopleWithNameLike(req, res, mysql, context, complete) {
       //sanitize the input as well as include the % character
-       var query = "SELECT bsg_people.character_id as id, fname, lname, houses.name AS homeworld, age FROM bsg_people INNER JOIN houses ON homeworld = houses.id WHERE bsg_people.fname LIKE " + mysql.pool.escape(req.params.s + '%');
+       var query = "SELECT id, fname, lname, houses.name AS homeworld, age FROM students INNER JOIN houses ON homeworld = houses.id WHERE students.fname LIKE " + mysql.pool.escape(req.params.s + '%');
       console.log(query)
 
       mysql.pool.query(query, function(error, results, fields){
@@ -180,7 +180,7 @@ module.exports = function(){
 
     router.delete('/:id', function(req, res){
         var mysql = req.app.get('mysql');
-        var sql = "DELETE FROM bsg_people WHERE character_id = ?";
+        var sql = "DELETE FROM students WHERE character_id = ?";
         var inserts = [req.params.id];
         sql = mysql.pool.query(sql, inserts, function(error, results, fields){
             if(error){
