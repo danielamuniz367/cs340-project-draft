@@ -19,7 +19,7 @@ module.exports = function(){
                 res.write(JSON.stringify(error));
                 res.end();
             }
-            context.students = results;
+            context.people = results;
             complete();
         });
     }

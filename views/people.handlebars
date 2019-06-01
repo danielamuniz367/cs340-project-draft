@@ -51,13 +51,12 @@
         <th>House</th>
     </thead>
     <tbody>
-        {{#each students}}
+        {{#each people}}
         <tr>
-            <td>{{fname}}</td>
-            <td>{{lname}}</td>
-            <td>{{type}}</td>
-            <td>{{class_year}}</td>
-            <td>{{house_id}}</td>
+            <td>{{fname}}</td> 
+            <td>{{lname}}</td> 
+            <td>{{homeworld}}</td> 
+            <td>{{age}}</td>
             <td>
                 <button onclick="deletePerson({{id}})">Delete</button>
             </td>
