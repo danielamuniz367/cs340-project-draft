@@ -25,9 +25,9 @@ module.exports = function(){
     }
 
     function getPeoplebyHomeworld(req, res, mysql, context, complete){
-      var query = "SELECT id, fname, lname, houses.name AS house, class_year FROM students INNER JOIN houses ON house = houses.id WHERE students.homeworld = ?";
+      var query = "SELECT id, fname, lname, houses.name AS house, class_year FROM students INNER JOIN houses ON house = houses.id WHERE students.house = ?";
       console.log(req.params)
-      var inserts = [req.params.homeworld]
+      var inserts = [req.params.house]
       mysql.pool.query(query, inserts, function(error, results, fields){
             if(error){
                 res.write(JSON.stringify(error));
@@ -41,7 +41,7 @@ module.exports = function(){
     /* Find people whose fname starts with a given string in the req */
     function getPeopleWithNameLike(req, res, mysql, context, complete) {
       //sanitize the input as well as include the % character
-       var query = "SELECT id, fname, lname, houses.name AS homeworld, age FROM students INNER JOIN houses ON homeworld = houses.id WHERE students.fname LIKE " + mysql.pool.escape(req.params.s + '%');
+       var query = "SELECT id, fname, lname, houses.name AS house, age FROM students INNER JOIN houses ON house = houses.id WHERE students.fname LIKE " + mysql.pool.escape(req.params.s + '%');
       console.log(query)
 
       mysql.pool.query(query, function(error, results, fields){
