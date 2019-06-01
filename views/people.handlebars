@@ -9,15 +9,13 @@
     <input type="text" name="lname">
     <br> House:
     <select name="house">
-        {{!-- {{#each planets}} --}} {{#each houses}}
+        {{#each houses}}
         <option value="{{id}}">{{name}}</option>
         {{/each}}
     </select>
     <br> Class Year:
     <input type="number" name="class_year">
-    <br> {{!-- Age:
-    <input type="number" name="age">
-    <br> --}}
+    <br>
     <input type="submit" value="Submit">
 </form>
 <br/>
@@ -51,12 +49,13 @@
         <th>House</th>
     </thead>
     <tbody>
-        {{#each people}}
+        {{#each students}}
         <tr>
-            <td>{{fname}}</td> 
-            <td>{{lname}}</td> 
-            <td>{{homeworld}}</td> 
-            <td>{{age}}</td>
+            <td>{{fname}}</td>
+            <td>{{lname}}</td>
+            <td>{{type}}</td>
+            <td>{{class_year}}</td>
+            <td>{{house_id}}</td>
             <td>
                 <button onclick="deletePerson({{id}})">Delete</button>
             </td>
