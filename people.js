@@ -25,7 +25,7 @@ module.exports = function(){
     }
 
     function getPeoplebyHomeworld(req, res, mysql, context, complete){
-      var query = "SELECT id, fname, lname, houses.name AS homeworld, class_year FROM students INNER JOIN houses ON homeworld = houses.id WHERE students.homeworld = ?";
+      var query = "SELECT id, fname, lname, houses.name AS house, class_year FROM students INNER JOIN houses ON house = houses.id WHERE students.homeworld = ?";
       console.log(req.params)
       var inserts = [req.params.homeworld]
       mysql.pool.query(query, inserts, function(error, results, fields){
