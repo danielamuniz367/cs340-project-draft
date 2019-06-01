@@ -1,6 +1,7 @@
 <html>
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu"
-    crossorigin="anonymous"> {{#each foo}} {{this}} {{/each}}
+{{#each foo}} 
+{{this}} 
+{{/each}}
 <h3>Add new student:</h3>
 <form id="addperson" action="/people" method="post">
     First name:
@@ -56,12 +57,8 @@
             <td>{{type}}</td>
             <td>{{class_year}}</td>
             <td>{{house_id}}</td>
-            <td>
-                <button onclick="deletePerson({{id}})">Delete</button>
-            </td>
-            <td>
-                <a href="/people/{{id}}">Update</a>
-            </td>
+            <td><button onclick="deletePerson({{id}})">Delete</button></td>
+            <td><a href="/people/{{id}}">Update</a></td>
         </tr>
         {{/each}}
     </tbody>
