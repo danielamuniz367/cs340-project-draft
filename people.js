@@ -55,7 +55,7 @@ module.exports = function(){
     }
 
     function getPerson(res, mysql, context, id, complete){
-        var sql = "SELECT id fname, lname, house_id, class_year FROM students WHERE id = ?";
+        var sql = "SELECT id,fname, lname, house_id, class_year FROM students WHERE id = ?";
         var inserts = [id];
         mysql.pool.query(sql, inserts, function(error, results, fields){
             if(error){
@@ -86,7 +86,7 @@ module.exports = function(){
     });
 
     /*Display all people from a given homeworld. Requires web based javascript to delete users with AJAX*/
-    router.get('/filter/:homeworld', function(req, res){
+    router.get('/filter/:house', function(req, res){
         var callbackCount = 0;
         var context = {};
         context.jsscripts = ["deleteperson.js","filterpeople.js","searchpeople.js"];
@@ -163,7 +163,7 @@ module.exports = function(){
         console.log(req.body)
         console.log(req.params.id)
         var sql = "UPDATE students SET fname=?, lname=?, house=?, class_year=? WHERE id=?";
-        var inserts = [req.body.fname, req.body.lname, req.body.homeworld, req.body.age, req.params.id];
+        var inserts = [req.body.fname, req.body.lname, req.body.house, req.body.age, req.params.id];
         sql = mysql.pool.query(sql,inserts,function(error, results, fields){
             if(error){
                 console.log(error)
