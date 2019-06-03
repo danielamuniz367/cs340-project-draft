@@ -33,11 +33,11 @@ CREATE TABLE `bsg_cert` (
 -- Dumping data for table `bsg_cert`
 --
 
-LOCK TABLES `bsg_cert` WRITE;
-/*!40000 ALTER TABLE `bsg_cert` DISABLE KEYS */;
-INSERT INTO `bsg_cert` VALUES (1,'Raptor'),(2,'Viper'),(3,'Mechanic'),(4,'Command');
-/*!40000 ALTER TABLE `bsg_cert` ENABLE KEYS */;
-UNLOCK TABLES;
+-- LOCK TABLES `bsg_cert` WRITE;
+-- /*!40000 ALTER TABLE `bsg_cert` DISABLE KEYS */;
+-- INSERT INTO `bsg_cert` VALUES (1,'Raptor'),(2,'Viper'),(3,'Mechanic'),(4,'Command');
+-- /*!40000 ALTER TABLE `bsg_cert` ENABLE KEYS */;
+-- UNLOCK TABLES;
 
 --
 -- Table structure for table `bsg_cert_people`
@@ -61,11 +61,11 @@ UNLOCK TABLES;
 -- Dumping data for table `bsg_cert_people`
 --
 
-LOCK TABLES `bsg_cert_people` WRITE;
-/*!40000 ALTER TABLE `bsg_cert_people` DISABLE KEYS */;
-INSERT INTO `bsg_cert_people` VALUES (1,1,'0000-00-00'),(1,2,'0000-00-00'),(2,1,'0000-00-00'),(2,2,'0000-00-00'),(3,1,'0000-00-00'),(3,6,'0000-00-00'),(4,1,'0000-00-00'),(4,6,'0000-00-00');
-/*!40000 ALTER TABLE `bsg_cert_people` ENABLE KEYS */;
-UNLOCK TABLES;
+-- LOCK TABLES `bsg_cert_people` WRITE;
+-- /*!40000 ALTER TABLE `bsg_cert_people` DISABLE KEYS */;
+-- INSERT INTO `bsg_cert_people` VALUES (1,1,'0000-00-00'),(1,2,'0000-00-00'),(2,1,'0000-00-00'),(2,2,'0000-00-00'),(3,1,'0000-00-00'),(3,6,'0000-00-00'),(4,1,'0000-00-00'),(4,6,'0000-00-00');
+-- /*!40000 ALTER TABLE `bsg_cert_people` ENABLE KEYS */;
+-- UNLOCK TABLES;
 
 --
 -- Table structure for table `students`
