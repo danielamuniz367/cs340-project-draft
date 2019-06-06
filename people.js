@@ -14,7 +14,7 @@ module.exports = function(){
     }
 
     function getPeople(res, mysql, context, complete){
-        mysql.pool.query("SELECT students.id as id, fname, lname, houses.name AS house_id, class_year FROM students INNER JOIN houses ON house_id = houses.id", function(error, results, fields){
+        mysql.pool.query("SELECT id as id, fname, lname, type, class_year, house_id FROM students", function(error, results, fields){
             if(error){
                 res.write(JSON.stringify(error));
                 res.end();
@@ -25,15 +25,15 @@ module.exports = function(){
     }
 
     function getPeoplebyHomeworld(req, res, mysql, context, complete){
-      var query = "SELECT bsg_people.character_id as id, fname, lname, houses.name AS homeworld, class_year FROM bsg_people INNER JOIN houses ON homeworld = houses.id WHERE bsg_people.homeworld = ?";
+      var query = "SELECT id as id, fname, lname, type, houses.id AS house_id, class_year FROM students INNER JOIN houses ON house = houses.id WHERE students.house = ?";
       console.log(req.params)
-      var inserts = [req.params.homeworld]
+      var inserts = [req.params.house]
       mysql.pool.query(query, inserts, function(error, results, fields){
             if(error){
                 res.write(JSON.stringify(error));
                 res.end();
             }
-            context.people = results;
+            context.students = results;
             complete();
         });
     }
@@ -41,7 +41,7 @@ module.exports = function(){
     /* Find people whose fname starts with a given string in the req */
     function getPeopleWithNameLike(req, res, mysql, context, complete) {
       //sanitize the input as well as include the % character
-       var query = "SELECT bsg_people.character_id as id, fname, lname, houses.name AS homeworld, age FROM bsg_people INNER JOIN houses ON homeworld = houses.id WHERE bsg_people.fname LIKE " + mysql.pool.escape(req.params.s + '%');
+       var query = "SELECT id, fname, lname, houses.name AS house, age FROM students INNER JOIN houses ON house = houses.id WHERE students.fname LIKE " + mysql.pool.escape(req.params.s + '%');
       console.log(query)
 
       mysql.pool.query(query, function(error, results, fields){
@@ -49,13 +49,13 @@ module.exports = function(){
                 res.write(JSON.stringify(error));
                 res.end();
             }
-            context.people = results;
+            context.students = results;
             complete();
         });
     }
 
     function getPerson(res, mysql, context, id, complete){
-        var sql = "SELECT id fname, lname, house_id, class_year FROM students WHERE id = ?";
+        var sql = "SELECT id,fname, lname, house_id, class_year FROM students WHERE id = ?";
         var inserts = [id];
         mysql.pool.query(sql, inserts, function(error, results, fields){
             if(error){
@@ -86,7 +86,7 @@ module.exports = function(){
     });
 
     /*Display all people from a given homeworld. Requires web based javascript to delete users with AJAX*/
-    router.get('/filter/:homeworld', function(req, res){
+    router.get('/filter/:house', function(req, res){
         var callbackCount = 0;
         var context = {};
         context.jsscripts = ["deleteperson.js","filterpeople.js","searchpeople.js"];
@@ -143,6 +143,7 @@ module.exports = function(){
         console.log(req.body)
         var mysql = req.app.get('mysql');
         var sql = "INSERT INTO students (fname, lname, house, class_year) VALUES (?,?,?,?)";
+        console.log(sql);
         var inserts = [req.body.fname, req.body.lname, req.body.house, req.body.class_year];
         sql = mysql.pool.query(sql,inserts,function(error, results, fields){
             if(error){
@@ -162,7 +163,7 @@ module.exports = function(){
         console.log(req.body)
         console.log(req.params.id)
         var sql = "UPDATE students SET fname=?, lname=?, house=?, class_year=? WHERE id=?";
-        var inserts = [req.body.fname, req.body.lname, req.body.homeworld, req.body.age, req.params.id];
+        var inserts = [req.body.fname, req.body.lname, req.body.house, req.body.age, req.params.id];
         sql = mysql.pool.query(sql,inserts,function(error, results, fields){
             if(error){
                 console.log(error)
@@ -179,7 +180,7 @@ module.exports = function(){
 
     router.delete('/:id', function(req, res){
         var mysql = req.app.get('mysql');
-        var sql = "DELETE FROM bsg_people WHERE character_id = ?";
+        var sql = "DELETE FROM students WHERE id = ?";
         var inserts = [req.params.id];
         sql = mysql.pool.query(sql, inserts, function(error, results, fields){
             if(error){

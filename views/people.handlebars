@@ -1,37 +1,40 @@
 <html>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
-{{#each foo}}
-{{this}}
+{{#each foo}} 
+{{this}} 
 {{/each}}
 <h3>Add new student:</h3>
 <form id="addperson" action="/people" method="post">
-    First name: <input type="text" name="fname"><br>
-    Last name: <input type="text" name="lname"><br>
-    House: <select name="house"> 
-        {{!-- {{#each planets}} --}}
+    First name:
+    <input type="text" name="fname">
+    <br> Last name:
+    <input type="text" name="lname">
+    <br> House:
+    <select name="house">
         {{#each houses}}
         <option value="{{id}}">{{name}}</option>
         {{/each}}
-    </select><br>
-    Class Year: <input type="number" name="class_year"><br>
-    {{!-- Age: <input type="number" name="age"><br> --}}
+    </select>
+    <br> Class Year:
+    <input type="number" name="class_year">
+    <br>
     <input type="submit" value="Submit">
- </form>
+</form>
 <br/>
 
 <form id='filter_people' action='' method=''>
-<!--- this form does not submit directly, the button handles all the interaction with backend -->
+    <!--- this form does not submit directly, the button handles all the interaction with backend -->
     <label> Filter by homeworld </label>
-    <select id='homeworld_filter' name="homeworld"> 
+    <select id='homeworld_filter' name="homeworld">
         {{#each houses}}
         <option value="{{id}}">{{name}}</option>
         {{/each}}
-    </select><br>
+    </select>
+    <br>
     <input type="button" value="Filter" onclick="filterPeopleByHomeworld()">
 </form>
 
 <form id='search_people' action='' method=''>
-<!--- this form does not submit directly, the button handles all the interaction with backend -->
+    <!--- this form does not submit directly, the button handles all the interaction with backend -->
     <label> Search people for first name starting with:</label>
     <input id='first_name_search_string' type='text' name='first_name_search_string' value=''>
     <input type="button" value="Search" onclick="searchPeopleByFirstName()">
@@ -39,23 +42,27 @@
 
 <h3>Current people:</h3>
 <table>
-    <thead> 
-        <th>First Name</th> 
-        <th>Last Name</th> 
+    <thead>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Type</th>
+        <th>Class Year</th>
         <th>House</th>
-        <th>Class Year</th>  
-    </thead> 
+    </thead>
     <tbody>
-        {{#each people}} 
-        <tr> 
-            <td>{{fname}}</td> 
-            <td>{{lname}}</td> 
-            <td>{{house_id}}</td> 
+        <tr>test</tr>
+        {{#each students}}
+        <tr>
+            <td>{{fname}}</td>
+            <td>{{lname}}</td>
+            <td>{{type}}</td>
             <td>{{class_year}}</td>
+            <td>{{house_id}}</td>
             <td><button onclick="deletePerson({{id}})">Delete</button></td>
             <td><a href="/people/{{id}}">Update</a></td>
-        </tr> 
-        {{/each}} 
-    </tbody> 
-</table> 
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+
 </html>
